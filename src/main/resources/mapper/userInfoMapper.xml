@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.UserInfoMapper">
+    <select id="findAllUsers" resultType="UserInfo">
+        select * from userinfo;
+    </select>
+    <insert id="insertUserInfo" parameterType="UserInfo" useGeneratedKeys="true"
+            keyProperty="id" keyColumn="id">
+        <selectKey keyProperty="id" order="BEFORE" statementType="PREPARED" resultType="int">
+            SELECT  LAST_INSERT_ID() as ID
+        </selectKey>
+        insert into userInfo(username) values(#{username,jdbcType=VARCHAR});
+    </insert>
+
+
+
+</mapper>
